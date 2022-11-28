@@ -22,4 +22,5 @@ then
         echo "Creating symlinks"
         stow bash/
         stow nvim/
+        stow git/
 fi
