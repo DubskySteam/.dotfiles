@@ -3,6 +3,19 @@ alias g='git'
 alias cls='clear'
 alias vi='nvim'
 alias fetch='screenfetch'
+alias cd..='cd ..'
+alias ..='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias grep='grep --color=auto'
+alis mkdir='mkdir -pv'
+alias mount='mount |column -t'
+alias path='echo -e ${PATH//:/\\n}'
+alias now='date +"%T"'
+alias nowtime=now
+alias nowdate='date +"%d-%m-%Y"'
+alias ports='netstat -tulanp'
 
 # ROOT ALIASES
 if [ $UID -ne 0 ]; then
