@@ -2,10 +2,17 @@
 alias g='git'
 alias cls='clear'
 alias vi='nvim'
+alias fetch='screenfetch'
 
 # ROOT ALIASES
 if [ $UID -ne 0 ]; then
-    alias reboot='sudo reboot'
-    alias update='sudo apt-get upgrade'
-    alias upgrade='sudo apt-get upgrade'
+        alias reboot='sudo reboot'
+        alias update='sudo apt-get upgrade'
+        alias upgrade='sudo apt-get upgrade'
+fi
+
+# ROOT ALIASES - INSTALLATIONS
+if [ $UID -ne 0 ]; then
+        alias InstallQOL='sudo apt install screenfetch git neovim -y'
+        alias InstallC='sudo apt install gcc g++ -y'
 fi
