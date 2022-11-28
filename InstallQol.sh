@@ -11,5 +11,5 @@ OSVERSION=$(hostnamectl | awk '/Operating/ { print $4 }')
 echo Need ROOT permissions
 if [ $MYOS = "Ubuntu" ]
 then
-		apt-get install screenfetch git neovim curl -y
+		apt-get install screenfetch git neovim net-tools curl -y
 fi
