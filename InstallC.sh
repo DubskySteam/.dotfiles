@@ -9,8 +9,7 @@ MYOS=$(hostnamectl | awk '/Operating/ { print $3 }')
 OSVERSION=$(hostnamectl | awk '/Operating/ { print $4 }')
 
 echo Need ROOT permissions
-if [ $MYOS = "Ubuntu" ] then
-	if [ $UID -ne 0 ]; then
+if [ $MYOS = "Ubuntu" ]
+then
 		apt-get install gcc g++ -y
-	fi
 fi
