@@ -18,5 +18,5 @@ then
         echo "Installing: Languages & Environments"
         apt-get install git neovim python3 gcc g++ openjdk-17-jdk openjdk-17-jre -y
         echo "Creating symlinks"
-        stow $HOME/.dotfiles/bash/
+        stow bash/
 fi
