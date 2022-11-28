@@ -7,6 +7,6 @@ alias fetch='screenfetch'
 # ROOT ALIASES
 if [ $UID -ne 0 ]; then
         alias reboot='sudo reboot'
-        alias update='sudo apt-get upgrade'
-        alias upgrade='sudo apt-get upgrade'
+        alias update='sudo apt-get upgrade -y'
+        alias upgrade='sudo apt-get upgrade -y'
 fi
