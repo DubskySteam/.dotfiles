@@ -16,8 +16,7 @@ then
         echo "Installing: Qualify of Life tools"
 		apt-get install stow screenfetch net-tools curl wget gpg -y
         echo "Installing: Languages & Environments"
-        apt-get install git neovim python python3 gcc g++ openjdk-17-jdk openjdk-17-jre -y
+        apt-get install git neovim python3 gcc g++ openjdk-17-jdk openjdk-17-jre -y
         echo "Creating symlinks"
-        stow bash
-        stow vscode
+        stow bash/
 fi
