@@ -12,6 +12,10 @@
 4) ```sudo chmod +x ./Install.sh```
 5) ```sudo ./Install.sh```
 
+### NeoVim
+   1) ```:source %```
+   2) ```:PlugInstall```
+
 ## Install scripts
 ###### Supported Distros
 ```
