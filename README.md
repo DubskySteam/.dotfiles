@@ -1,33 +1,34 @@
 # .dotfiles
 
-## Supported Shells for Aliases
-* Bash
-* Fish
-* PS7
-
 ## How to use
 1) ```cd $HOME```
 2) ```git clone https://github.com/dubskysteam/.dotfiles```
 3) ```cd .dotfiles```
-4) ```sudo chmod +x ./Install.sh```
-5) ```sudo ./Install.sh```
+### Debian
+4) ```sudo chmod +x ./Install_Deb.sh```
+5) ```sudo ./Install_Deb.sh```
+### Arch
+4) ```sudo chmod +x ./Deb_Install.sh```
+5) ```sudo ./Arch_Install.sh```
+___
+6) ln git/.gitconfig $HOME
 
 ### NeoVim
-   1) ```:source %```
-   2) ```:PlugInstall```
+   1) ```:PlugInstall```
 
 ## Install scripts
 ###### Supported Distros
 ```
 Debian (Tested: 11+)
 Ubuntu (Tested: 20.04+)
+Manjaro (Tested: 22+)
 ```
-##### Programming
+##### Languages
 ```
 C/C++
 Java 17
-NodeJS 16
-Python 2+3
+NodeJS 16 (Latest on Arch)
+Python 3
 ```
 ##### Quality of Life
 ```

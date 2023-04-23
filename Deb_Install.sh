@@ -16,7 +16,7 @@ then
         echo "Installing: Qualify of Life tools"
 		apt-get install stow screenfetch net-tools curl wget gpg -y
         echo "Installing: Languages & Environments"
-        apt-get install git neovim python2 python3 gcc g++ openjdk-17-jdk openjdk-17-jre -y
+        apt-get install git neovim python3 gcc g++ openjdk-17-jdk openjdk-17-jre -y
         curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
         apt install -y nodejs
         echo "Creating symlinks"
