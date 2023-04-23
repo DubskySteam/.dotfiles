@@ -1,12 +1,20 @@
 [user]
-	email = 23001099+DubskySteam@users.noreply.github.com
-	name = Dubsky
-	signingkey = 1110A50DC71A1922
+        email = 23001099+DubskySteam@users.noreply.github.com
+        name = Dubsky
+        signingkey = 1110A50DC71A1922
 [alias]
-	s = status
-	p = push
-	al = add *
-	co = checkout
-	am = add -u
-	c = commit -S -m
-	au = add -u
+        s = status
+        p = push
+        al = add *
+        co = checkout
+        am = add -u
+        c = commit -S -m
+        au = add -u
+[credential "https://github.com"]
+        helper = 
+        helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+        helper = 
+        helper = !/usr/bin/gh auth git-credential
+[pull]
+        rebase = true
