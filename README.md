@@ -17,7 +17,7 @@ ___
    1) ```:PlugInstall```
 
 ## Install scripts
-###### Supported Distros
+##### Supported Distros
 ```
 Debian (Tested: 11+)
 Ubuntu (Tested: 20.04+)
