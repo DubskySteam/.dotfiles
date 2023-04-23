@@ -5,10 +5,10 @@
 2) ```git clone https://github.com/dubskysteam/.dotfiles```
 3) ```cd .dotfiles```
 ### Debian
-4) ```sudo chmod +x ./Install_Deb.sh```
-5) ```sudo ./Install_Deb.sh```
-### Arch
 4) ```sudo chmod +x ./Deb_Install.sh```
+5) ```sudo ./Deb_Install.sh```
+### Arch
+4) ```sudo chmod +x ./Arch_Install.sh```
 5) ```sudo ./Arch_Install.sh```
 ___
 6) ln git/.gitconfig $HOME
