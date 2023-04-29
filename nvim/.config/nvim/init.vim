@@ -6,6 +6,8 @@ call plug#begin('~/AppData/Local/nvim/plugged')
 " INFO BARS
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" DISCORD "
+Plug 'andweeb/presence.nvim'
 " THEMES
 Plug 'joshdick/onedark.vim'
 " File Browser + Icons
@@ -44,6 +46,8 @@ nnoremap <F5> :tabnew<CR>
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-p> :Files<CR>
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
 
 "
 " PLUGIN SETTINGS
