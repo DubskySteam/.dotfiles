@@ -11,11 +11,13 @@ echo '!!! TO CONTINUE YOU NEED ROOT PERMISSIONS !!!'
 if [ $MYOS = "Manjaro" ] || [ $MYOS = "ARCH" ]
 then
 	echo "> Checking for updates"
-	pamac update upgrade
+	sudo pamac update upgrade
 	echo "> Installing: QoL Tools"
-	pamac install stow screenfetch net-tools wget gpg
+	sudo pamac install stow screenfetch net-tools wget gpg
 	echo "> Installing: Languages & Environments"
-	pamac install git neovim python3 gcc jdk17-openjdk nodejs
+	sudo pamac install git neovim python3 gcc jdk17-openjdk nodejs
+	echo "> Installing: Terminal"
+	sudo pamac install alacritty
 	echo "> Creating symlinks"
 	stow nvim/
 fi
