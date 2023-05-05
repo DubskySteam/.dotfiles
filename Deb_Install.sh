@@ -23,23 +23,6 @@ then
         stow bash/
         stow nvim/
         stow git/
-elif [ $MYOS = "Manjaro" ] || [ $MYOS = "Arch" ]
-then
-        echo "!!! AUR SUPPORT NEED TO BE ACTIVATED!!! "
-        echo "Checking for updates"
-        pacman -Sy
-        pacman -Syu
-        echo "Installing: Qualify of Life tools"
-		pacman -S stow tmux screenfetch git net-tools curl wget -y
-        echo "Installing: Languages & Environments"
-        pacman -S neovim python gcc jre17-openjdk -y
-        yay -S nodejs-lts-gallium
-	echo "> Installing: Terminal"
-	pacman -S alacritty
-        echo "Creating symlinks"
-        stow bash/
-        stow nvim/
-        stow git/
 	stow tmux/
 	stow alacritty/
 fi
