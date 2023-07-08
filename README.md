@@ -37,6 +37,7 @@ Alacritty
 ##### Quality of Life
 ```
 git
+tmux
 gpg
 curl
 wget

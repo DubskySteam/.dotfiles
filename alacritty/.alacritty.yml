@@ -1,2 +1,5 @@
 window:
   title: BashIt
+  dimensions:
+    columns: 170
+    lines: 40

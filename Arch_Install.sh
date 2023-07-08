@@ -13,11 +13,13 @@ then
 	echo "> Checking for updates"
 	sudo pamac update upgrade
 	echo "> Installing: QoL Tools"
-	sudo pamac install stow screenfetch net-tools wget gpg
+	sudo pamac install stow tmux screenfetch net-tools wget gpg
 	echo "> Installing: Languages & Environments"
 	sudo pamac install git neovim python3 gcc jdk17-openjdk nodejs
 	echo "> Installing: Terminal"
 	sudo pamac install alacritty
 	echo "> Creating symlinks"
-	stow nvim/
+	stow nvim
+	stow tmux
+	stow alacritty
 fi
