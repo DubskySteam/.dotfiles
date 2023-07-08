@@ -23,6 +23,12 @@ return require('packer').startup(function(use)
 	use("nvim-lua/plenary.nvim")
 	use("mbbill/undotree")
 	use("tpope/vim-fugitive")
+    use 'andweeb/presence.nvim'
+
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
 
 	use {
 	  'VonHeikemen/lsp-zero.nvim',
