@@ -1,5 +1,7 @@
 # .dotfiles
 
+![](docs/banner.png)
+
 ## How to use
 1) ```cd $HOME```
 2) ```git clone https://github.com/dubskysteam/.dotfiles```
@@ -16,12 +18,12 @@ ___
 ### NeoVim
    1) ```:PlugInstall```
 
-## Install scripts
+## Install script
 ##### Supported Distros
 ```
-Debian (Tested: 11+)
-Ubuntu (Tested: 20.04+)
-Manjaro (Tested: 22.1+)
+Arch (Tested: 11.05.2023)
+Manjaro (Tested: 11.05.2023)
+EndeavourOS (Tested: 06.11.2023)
 ```
 ##### Languages
 ```
