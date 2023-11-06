@@ -24,6 +24,7 @@ return require('packer').startup(function(use)
 	use("mbbill/undotree")
 	use("tpope/vim-fugitive")
     use 'andweeb/presence.nvim'
+    use("jiangmiao/auto-pairs")
 
     use {
         'nvim-lualine/lualine.nvim',
