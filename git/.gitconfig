@@ -14,5 +14,10 @@
         rebase = true
 [commit]
 	gpgsign = true
-[gpg]
-	program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe
+
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
