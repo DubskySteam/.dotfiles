@@ -1,5 +1,5 @@
 window:
   title: BashIt
   dimensions:
-    columns: 170
-    lines: 40
+    columns: 100
+    lines: 25
