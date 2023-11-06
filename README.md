@@ -16,7 +16,8 @@
 ___
 
 ### NeoVim
-   1) ```:PlugInstall```
+   1) ```:PackerSync```
+   2) ```:PackerInstall```
 
 ## Install script
 ##### Supported Distros
