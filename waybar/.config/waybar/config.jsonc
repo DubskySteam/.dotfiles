@@ -1,0 +1,9 @@
+{
+    // General
+    "spacing": 4,
+
+    // Modules
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["Hi"],
+    "modules-right": ["cpu", "memory", "network", "clock"]
+}
