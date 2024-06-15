@@ -32,8 +32,11 @@ select yn in "Yes" "No"; do
     esac
 done
 
+echo "> Installing: Essentials"
+sudo pacman -S --noconfirm stow tmux neofetch wget gpgme eza base-devel cmake make wofi ninja gradle
+
 echo "> Installing: QoL Tools"
-sudo pacman -S --noconfirm stow tmux neofetch wget gpgme
+sudo pacman -S --noconfirm mpv nomacs btop
 
 echo "> Installing: Languages & Environments"
 sudo pacman -S --noconfirm git neovim python3 gcc jdk17-openjdk
