@@ -1,4 +1,3 @@
-# ALIASES
 alias g='git'
 alias cls='clear'
 alias vi='nvim'
@@ -9,18 +8,11 @@ alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias h='cd $HOME'
-alias grep='grep --color=auto'
+alias grep='rg --color=auto'
 alias mkdir='mkdir -pv'
 alias mount='mount |column -t'
 alias path='echo -e ${PATH//:/\\n}'
 alias now='date +"%T"'
-alias nowtime=now
+alias nowtime='now'
 alias nowdate='date +"%d-%m-%Y"'
 alias ports='netstat -tulanp'
-
-# ROOT ALIASES
-if [ $UID -ne 0 ]; then
-        alias reboot='sudo reboot'
-        alias update='sudo apt-get upgrade -y'
-        alias upgrade='sudo apt-get upgrade -y'
-fi
