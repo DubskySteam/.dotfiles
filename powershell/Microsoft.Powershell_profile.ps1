@@ -1,9 +1,15 @@
-Set-Alias -Name ll Get-ChildItem
-Set-Alias -Name la Get-ChildItem -Force
 Set-Alias -Name g -Value git
 Set-Alias -Name vi -Value nvim
 Set-Alias -Name vim -Value nvim
 Set-Alias -Name cdh -Value "cd $HOME"
+
+function la {
+    eza --icons --all @args
+}
+
+function ll {
+    eza --icons --long --all @args
+}
 
 function Show-ASCIIArt {
 @"
