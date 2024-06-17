@@ -5,6 +5,10 @@
 
 ### Manual
 
+**Requirements:**
+- git
+- stow (linux only)
+
 1. **Clone the Repository**
    ```sh
    cd $HOME
@@ -13,22 +17,41 @@
    ```
 
 2. **Create symlinks**
+
+   **Linux / Arch**
    ```sh
    stow X  # Replace X with the folder name you want to symlink
    ```
 
-### Install scripts
+   **Windows**
+   ```sh
+   New-Item -Path PATH_FROM_DOTFILES -ItemType SymbolicLink -Value PATH_TO_TARGET_DIR
+   ```
+
+### Install scripts - (Recommended)
 
 - **Arch**
    ```sh
-   sudo chmod +x ./Arch_Run.sh
-   sudo ./Arch_Run.sh
+   sudo chmod +x ./install.sh
+   sudo ./install.sh
    ```
 
-- **Windows** (run it in powershell with admin permissions)
-   ```ps1
-   .\install.ps1
-   ```
+- **Windows**
+   
+   1. **Install PowerShell 7 if required**
+      ```ps1
+      winget install --id Microsoft.Powershell --source winget
+      ```
+
+   2. **Install necessary programs**
+      ```ps1
+      .\win_install_req.ps1
+      ```
+
+   3. **Create symlinks** 
+      ```ps1
+      .\win_install.ps1
+      ```
 
 
 ## Supported
