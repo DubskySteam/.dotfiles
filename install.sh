@@ -47,3 +47,4 @@ stow tmux
 stow bash
 stow waybar
 stow hypr
+stow git
