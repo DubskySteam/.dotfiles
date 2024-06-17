@@ -38,5 +38,9 @@ Write-Host "Installing: RipGrep"
 winget install BurntSushi.ripgrep.MSVC
 Write-Host "Installing: Eza"
 winget install eza-community.eza
+Write-Host "Installing: NeoVim"
+winget install Neovim.Neovim
+Write-Host "Installing: WezTerm"
+winget install wez.wezterm
 
 Write-Host "Packages installation completed."
