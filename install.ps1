@@ -15,7 +15,7 @@ $links = @(
     },
     @{
         LinkPath = "$UserProfile\.wezterm.lua"
-        TargetPath = "$UserProfile\github\.dotfiles\wezterm\.config\wezterm"
+        TargetPath = "$UserProfile\github\.dotfiles\wezterm\.config\wezterm\.wezterm.lua"
     }
 )
 
