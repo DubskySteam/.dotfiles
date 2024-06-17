@@ -3,6 +3,10 @@ Set-Alias -Name vi -Value nvim
 Set-Alias -Name vim -Value nvim
 Set-Alias -Name cdh -Value "cd $HOME"
 
+function cdg {
+    cd $HOME/github
+}
+
 function la {
     eza --icons --all @args
 }
