@@ -2,10 +2,6 @@ $UserProfile = [System.Environment]::GetFolderPath('UserProfile')
 
 $links = @(
     @{
-        LinkPath = "$UserProfile\.gitconfig"
-        TargetPath = "$UserProfile\github\.dotfiles\git\.gitconfig"
-    },
-    @{
         LinkPath = "$UserProfile\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
         TargetPath = "$UserProfile\github\.dotfiles\powershell\Microsoft.PowerShell_profile.ps1"
     },
