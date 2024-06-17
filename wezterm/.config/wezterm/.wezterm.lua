@@ -12,7 +12,8 @@ config.initial_cols = 140
 config.initial_rows = 40
 config.enable_wayland = true
 config.window_background_opacity = 0.90
-font = wezterm.font('JetBrains Mono Nerd Font')
+config.font = wezterm.font('Terminess Nerd Font')
+config.font_size = 17
 
 -- Colors
 config.colors = {
