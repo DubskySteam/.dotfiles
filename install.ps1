@@ -39,3 +39,6 @@ foreach ($link in $links) {
     }
 }
 
+Write-Output "Installing programs now with winget"
+winget install BurntSushi.ripgrep.MSVC
+winget install eza-community.eza
