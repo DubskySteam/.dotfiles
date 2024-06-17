@@ -1,5 +1,3 @@
-#Requires -RunAsAdministrator
-
 $art = @"
 
       _         _           _                   _         _     __  _  _            
@@ -20,7 +18,6 @@ return $principal.IsInRole($adminRole)
 }
 
 Write-Host $art
-Write-Host "This script will install packages." -ForegroundColor Red
 
 if (-not (Test-Admin)) {
     Write-Host "This script must be run as an administrator!" -ForegroundColor Red
