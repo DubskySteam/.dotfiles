@@ -11,6 +11,9 @@ function ll {
     eza --icons --long --all @args
 }
 
+fnm env --use-on-cd | Out-String | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\zash.omp.json" | Invoke-Expression
+
 function Show-ASCIIArt {
 @"
 
@@ -26,5 +29,3 @@ function Show-ASCIIArt {
 "@
 }
 Show-ASCIIArt
-
-fnm env --use-on-cd | Out-String | Invoke-Expression
