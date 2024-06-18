@@ -1,10 +1,17 @@
 Set-Alias -Name g -Value git
 Set-Alias -Name vi -Value nvim
 Set-Alias -Name vim -Value nvim
-Set-Alias -Name cdh -Value "cd $HOME"
+
+function cdh {
+    cd $HOME
+}
 
 function cdg {
     cd $HOME/github
+}
+
+function cdd {
+    cd $HOME/.dotfiles
 }
 
 function la {
