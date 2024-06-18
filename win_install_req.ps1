@@ -17,7 +17,7 @@ $principal = New-Object Security.Principal.WindowsPrincipal($currentUser)
 return $principal.IsInRole($adminRole)
 }
 
-Write-Host $art
+Write-Host $art -ForegroundColor Orange
 
 if (-not (Test-Admin)) {
     Write-Host "This script must be run as an administrator!" -ForegroundColor Red
@@ -42,5 +42,7 @@ Write-Host "Installing: NeoVim"
 winget install Neovim.Neovim
 Write-Host "Installing: WezTerm"
 winget install wez.wezterm
+Write-Host "Installing: oh-my-posh"
+winget install JanDeDobbeleer.OhMyPosh -s winget
 
 Write-Host "Packages installation completed."

@@ -1,17 +1,43 @@
+$art = @"
+
+      _         _           _                   _         _     __  _  _            
+     | |       | |         | |                 | |       | |   / _|(_)| |           
+   __| | _   _ | |__   ___ | | __ _   _      __| |  ___  | |_ | |_  _ | |  ___  ___ 
+  / _` || | | || '_ \ / __|| |/ /| | | |    / _` | / _ \ | __||  _|| || | / _ \/ __|
+ | (_| || |_| || |_) |\__ \|   < | |_| |  _| (_| || (_) || |_ | |  | || ||  __/\__ \
+  \__,_| \__,_||_.__/ |___/|_|\_\ \__, | (_)\__,_| \___/  \__||_|  |_||_| \___||___/
+                                   __/ |                                            
+                                  |___/                                             
+"@
+
+function Test-Admin {
+$currentUser = [Security.Principal.WindowsIdentity]::GetCurrent()
+$adminRole = [Security.Principal.WindowsBuiltInRole]::Administrator
+$principal = New-Object Security.Principal.WindowsPrincipal($currentUser)
+return $principal.IsInRole($adminRole)
+}
+
+Write-Host $art -ForegroundColor Orange
+
+if (-not (Test-Admin)) {
+    Write-Host "This script must be run as an administrator!" -ForegroundColor Red
+    exit
+}
+
 $UserProfile = [System.Environment]::GetFolderPath('UserProfile')
 
 $links = @(
     @{
         LinkPath = "$UserProfile\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
-        TargetPath = "$UserProfile\github\.dotfiles\powershell\Microsoft.PowerShell_profile.ps1"
+        TargetPath = "$UserProfile\.dotfiles\powershell\Microsoft.PowerShell_profile.ps1"
     },
     @{
         LinkPath = "$UserProfile\AppData\Local\nvim"
-        TargetPath = "$UserProfile\github\.dotfiles\nvim\.config\nvim"
+        TargetPath = "$UserProfile\.dotfiles\nvim\.config\nvim"
     },
     @{
         LinkPath = "$UserProfile\.wezterm.lua"
-        TargetPath = "$UserProfile\github\.dotfiles\wezterm\.config\wezterm\.wezterm.lua"
+        TargetPath = "$UserProfile\.dotfiles\wezterm\.config\wezterm\.wezterm.lua"
     }
 )
 
