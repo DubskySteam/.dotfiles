@@ -8,6 +8,7 @@ $art = @"
   \__,_| \__,_||_.__/ |___/|_|\_\ \__, | (_)\__,_| \___/  \__||_|  |_||_| \___||___/
                                    __/ |                                            
                                   |___/                                             
+
 "@
 
 function Test-Admin {
@@ -51,4 +52,4 @@ Write-Host "> Creating environment variables" -ForegroundColor Yellow
 [System.Environment]::SetEnvironmentVariable("POSH_THEMES_PATH", "$env:UserProfile\AppData\Local\Programs\oh-my-posh\themes", [System.EnvironmentVariableTarget]::User)
 Write-Output "POSH_THEMES_PATH: $env:POSH_THEMES_PATH"
 
-Write-Host "Packages installation completed. :3" -ForegrounColor Green
+Write-Host "> Requirement installation complete" -ForegroundColor Green
