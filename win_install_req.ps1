@@ -24,13 +24,15 @@ if (-not (Test-Admin)) {
     exit
 }
 
+$UserProfile = [System.Environment]::GetFolderPath('UserProfile')
+
 $continue = Read-Host "Do you want to continue with the installation of packages? (y/n)"
 if ($continue -ne 'y') {
-    Write-Host "Installation aborted."
+    Write-Host "Installation aborted." -ForegroundColor Red
     exit
 }
 
-Write-Host "Installing packages using winget..."
+Write-Host "> Installing packages using winget..." -ForegroundColor Yellow
 
 Write-Host "Installing: VS Code"
 winget install --id Microsoft.VisualStudioCode -e
@@ -45,4 +47,8 @@ winget install wez.wezterm
 Write-Host "Installing: oh-my-posh"
 winget install JanDeDobbeleer.OhMyPosh -s winget
 
-Write-Host "Packages installation completed."
+Write-Host "> Creating environment variables" -ForegroundColor Yellow
+[System.Environment]::SetEnvironmentVariable("POSH_THEMES_PATH", "$env:UserProfile\AppData\Local\Programs\oh-my-posh\themes", [System.EnvironmentVariableTarget]::User)
+Write-Output "POSH_THEMES_PATH: $env:POSH_THEMES_PATH"
+
+Write-Host "Packages installation completed. :3" -ForegrounColor Green
