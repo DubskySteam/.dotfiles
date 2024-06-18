@@ -17,7 +17,7 @@ $principal = New-Object Security.Principal.WindowsPrincipal($currentUser)
 return $principal.IsInRole($adminRole)
 }
 
-Write-Host $art -ForegroundColor Orange
+Write-Host $art -ForegroundColor Cyan
 
 if (-not (Test-Admin)) {
     Write-Host "This script must be run as an administrator!" -ForegroundColor Red
