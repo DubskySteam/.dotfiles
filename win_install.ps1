@@ -42,6 +42,11 @@ $links = @(
     }
 )
 
+if (-not (Test-Path -Path "$UserProfile\Documents\PowerShell")) {
+    New-Item -ItemType Directory -Path "$UserProfile\Documents\PowerShell"
+}
+
+
 foreach ($link in $links) {
     $LinkPath = $link.LinkPath
     $TargetPath = $link.TargetPath
