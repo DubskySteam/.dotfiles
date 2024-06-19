@@ -8,6 +8,7 @@
 **Requirements:**
 - git
 - stow (linux only)
+- powershell 7 (windows only)
 
 1. **Clone the Repository**
    ```sh
