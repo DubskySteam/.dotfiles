@@ -35,6 +35,8 @@ if ($continue -ne 'y') {
 
 Write-Host "> Installing packages using winget..." -ForegroundColor Yellow
 
+Write-Host "Installing: Git"
+winget install -e --id Git.Git
 Write-Host "Installing: VS Code"
 winget install --id Microsoft.VisualStudioCode -e
 Write-Host "Installing: RipGrep"
