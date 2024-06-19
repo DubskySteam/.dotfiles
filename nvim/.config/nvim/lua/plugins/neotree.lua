@@ -5,5 +5,8 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
-    }
+    },
+    config = function()
+        vim.keymap.set("n", "<leader>po", "<CMD>:Neotree focus<CR>");
+    end
 }
