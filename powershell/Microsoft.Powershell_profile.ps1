@@ -3,15 +3,19 @@ Set-Alias -Name vi -Value nvim
 Set-Alias -Name vim -Value nvim
 
 function cdh {
-    cd $HOME
+    Set-Location $HOME
 }
 
 function cdg {
-    cd $HOME/github
+    Set-Location $HOME/github
 }
 
 function cdd {
-    cd $HOME/.dotfiles
+    Set-Location $HOME/.dotfiles
+}
+
+function wingrade {
+    winget upgrade --all
 }
 
 function la {
