@@ -49,6 +49,8 @@ Write-Host "Installing: WezTerm"
 winget install wez.wezterm
 Write-Host "Installing: oh-my-posh"
 winget install JanDeDobbeleer.OhMyPosh -s winget
+Write-Host "Installing: FNM"
+winget install Schniz.fnm -s winget
 
 Write-Host "> Creating environment variables" -ForegroundColor Yellow
 [System.Environment]::SetEnvironmentVariable("POSH_THEMES_PATH", "$env:UserProfile\AppData\Local\Programs\oh-my-posh\themes", [System.EnvironmentVariableTarget]::User)
