@@ -11,9 +11,14 @@ config.hide_tab_bar_if_only_one_tab = true
 config.initial_cols = 140
 config.initial_rows = 40
 config.enable_wayland = true
-config.window_background_opacity = 0.90
 config.font = wezterm.font('Terminess Nerd Font')
 config.font_size = 17
+
+-- Window
+config.window_padding = { left = 5, right = 5, top = 5, bottom = 0 }
+config.window_background_opacity = 0.90
+config.window_decorations = "RESIZE"
+
 
 -- Colors
 config.colors = {
@@ -58,16 +63,11 @@ config.keys = {
   }
 
 -- Tabs
-config.use_fancy_tab_bar = true
-config.tab_bar_style = {
-        window_hide = " minimize ",
-        window_maximize = " maximize ",
-        window_close = " close ",
-
-        window_close_hover = " CLOSE ",
-        window_hide_hover = " MINIMIZE ",
-        window_maximize_hover = " MAXIMIZE ",
-    }
-window_decorations = "RESIZE|MACOS_FORCE_DISABLE_SHADOW"
+config.tab_bar_at_bottom = true
+config.show_new_tab_button_in_tab_bar = false
+config.use_fancy_tab_bar = false
+config.show_tab_index_in_tab_bar = false
+config.tab_max_width = 25
+config.hide_tab_bar_if_only_one_tab = false
 
 return config
