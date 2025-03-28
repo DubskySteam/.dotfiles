@@ -1,0 +1,130 @@
+body {
+  font-family: 'FiraCode Nerd Font', monospace;
+  margin: 0;
+  padding: 10px;
+  background-color: transparent;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: white;
+  background-color: rgba(40, 42, 54, 0.95);
+  height: 40px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 0 15px;
+  position: relative;
+  width: calc(100% - 20px);
+  margin: 0 auto;
+  line-height: 40px;
+}
+
+.left, .right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+  z-index: 1;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.workspaces {
+  display: flex;
+  gap: 8px;
+}
+
+.workspace-indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: rgba(68, 71, 90, 0.8);
+  cursor: pointer;
+  margin-top: -1px;
+}
+
+.workspace-indicator.focused {
+  background-color: #ff0055;
+}
+
+.workspace-indicator.visible {
+  background-color: #ff214e;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.progress-bar {
+  width: 60px;
+  height: 8px;
+  background-color: rgba(68, 71, 90, 0.8);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #ff0055;
+  border-radius: 4px;
+}
+
+.separator {
+  opacity: 0.4;
+  margin: 0 4px;
+}
+
+.media {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.network-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.volume-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.battery-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ip-address {
+  font-family: 'FiraCode Nerd Font Mono', monospace;
+  font-size: 12px;
+}
