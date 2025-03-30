@@ -3,18 +3,39 @@
 	name = Dubsky
 	signingkey = 1110A50DC71A1922
 [alias]
-        s = status
-        p = push
-        al = add *
-        co = checkout
-        am = add -u
-        c = commit -S -m
-        au = add -u
+    s   = status -sb
+    p   = push --follow-tags
+    co  = checkout
+    cm  = commit -S -m
+    
+    aa  = add -A
+    au  = add -u
+    ap  = add -p    
+
+    lg  = log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all
+
+    amend = commit --amend --no-edit
+
+    ss = stash push -m
+    sl = stash list
+
+    nuclear = !git reset --hard && git clean -fd
+    
+    br = branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative))'
+
+    sync = !git pull --rebase --autostash
+
+    blame = blame -w -M -C
+    
+    map = log --all --graph --decorate --oneline --simplify-by-decoration
+    
+    yolo = "!git diff --stat @{yesterday}"
+
+    d = diff --color-words --word-diff-regex='\\w+|[^\\s]' --patch-with-stat
 [pull]
         rebase = true
 [commit]
 	gpgsign = true
-
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
