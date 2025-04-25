@@ -17,7 +17,7 @@ fi
 
 # Start tmux if not already running and if not in a tmux session
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux new-session -A -s main
+    tmux new-session
 fi
 
 # If not running interactively, don't do anything
