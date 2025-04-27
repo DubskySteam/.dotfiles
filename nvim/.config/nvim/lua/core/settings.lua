@@ -13,3 +13,5 @@ vim.opt.updatetime = 50
 vim.g.netrw_browse_split = 0
 vim.g.netrw_altv = 1
 vim.g.netrw_liststyle = 3
+
+vim.o.background = "dark"
