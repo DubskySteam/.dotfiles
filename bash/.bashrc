@@ -15,10 +15,24 @@ if [ -f ~/.bash_keybinds ]; then
     . ~/.bash_keybinds
 fi
 
-# Start tmux if not already running and if not in a tmux session
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux new-session
-fi
+# Function to create a new tmux session for each terminal/SSH login
+start_tmux() {
+    if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+        if [ -n "$SSH_CONNECTION" ]; then
+            # Create a new session for each SSH connection
+            tmux new-session -s ssh_$(date +%s)
+        else
+            # Create a new session for local terminals
+            tmux new-session -s local_$(date +%s)
+        fi
+    fi
+}
+
+# Call the start_tmux function
+start_tmux
+
+# Initialize starship prompt
+eval "$(starship init bash)"
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return

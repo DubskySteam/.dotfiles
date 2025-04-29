@@ -1,1 +1,4 @@
+# GPG Key signing for git
 export GPG_TTY=$(tty)
+# Fix for polybar on i3wm
+export DISPLAY=:0
