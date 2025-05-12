@@ -4,7 +4,7 @@ return {
         event = "VimEnter",
         config = function()
             require('dashboard').setup{
-                theme = 'hyper',
+                theme = 'doom',
                 shortcut_type = "number",
             }
         end
