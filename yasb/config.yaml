@@ -35,6 +35,7 @@ bars:
         [
           "winlaunch",
           "github",
+          "github_profile",
           "komorebi_workspaces",
           "traffic"
         ]
@@ -116,10 +117,23 @@ widgets:
         color: "black"
         radius: 3
         offset: [ 1, 1 ]
+  github_profile:
+    type: "yasb.custom.CustomWidget"
+    options:
+      label: "<span>\uf113</span>" # Alternate GitHub icon (e.g., Octocat)
+      label_alt: "GitHub Profile"
+      class_name: "github-profile"
+      callbacks:
+        on_left: "exec cmd /c start https://github.com/DubskySteam"
+      label_shadow:
+        enabled: true
+        color: "black"
+        radius: 3
+        offset: [1, 1]
   winlaunch:
     type: "yasb.custom.CustomWidget"
     options:
-      label: "<span>\udb82\udc33</span>"
+      label: "<span>\udb85\udcde</span>"
       label_alt: "WinLaunch"
       class_name: "winlaunch"
       callbacks:

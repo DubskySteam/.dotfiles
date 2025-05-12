@@ -290,8 +290,21 @@
     padding-right: 4px;
     color: #9399b2;
 }
+
 .github-menu .contents .item.new .icon {
     color: #3fb950;
+}
+
+.github-profile .icon {
+    font-size: 24px;
+}
+
+.github-profile .label {
+    background-color: #221f2e;
+    color: #f5c276;
+    padding: 0 8px;
+    margin: 1px;
+    border-radius: 6px;
 }
 
 .winlaunch .icon {
