@@ -1,17 +1,12 @@
+-- lua/user/plugins/lazygit.lua
+
 return {
-    "kdheepak/lazygit.nvim",
-    lazy = true,
-    cmd = {
-        "LazyGit",
-        "LazyGitConfig",
-        "LazyGitCurrentFile",
-        "LazyGitFilter",
-        "LazyGitFilterCurrentFile",
-    },
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-    },
-    keys = {
-        { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-    }
+  "kdheepak/lazygit.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
+  config = function()
+    -- No setup needed, but you can add custom settings here if you want
+  end,
 }
+

@@ -1,21 +1,32 @@
+-- lua/user/core/keymaps.lua
+
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+local keymap = vim.keymap -- for conciseness
 
-vim.keymap.set("n", "<leader>pp", "<CMD>:Neotree toggle<CR>")
+-- General Keymaps
+keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit window" })
+keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save buffer" })
 
-vim.cmd([[
-function! FocusEditorPane() abort
-    let l:current_win = win_getid()
-    for l:win in range(1, winnr('$'))
-        if l:win != l:current_win && getwinvar(l:win, '&filetype') !=# 'neo-tree'
-            execute l:win . 'wincmd w'
-            return
-        endif
-    endfor
-endfunction
-]])
+-- Add this to your keymaps.lua
+keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Open LazyGit" })
+-- Add this to lua/user/core/keymaps.lua
+keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+-- from lua/user/core/keymaps.lua
+keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })
+keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right split" })
 
-vim.api.nvim_set_keymap('n', '<leader>e', ':call FocusEditorPane()<CR>', { noremap = true, silent = true })
+-- Clear search highlighting
+keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- Split navigation
+keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })
+keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to lower split" })
+keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to upper split" })
+keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right split" })
+
+-- Resize splits
+keymap.set("n", "<C-Up>", ":resize -2<CR>", { desc = "Decrease window height" })
+keymap.set("n", "<C-Down>", ":resize +2<CR>", { desc = "Increase window height" })
+keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
+keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+

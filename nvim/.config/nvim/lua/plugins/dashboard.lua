@@ -1,11 +1,23 @@
+-- lua/user/plugins/dashboard.lua
+
 return {
-        'nvimdev/dashboard-nvim',
-        dependencies = { {'nvim-tree/nvim-web-devicons'}},
-        event = "VimEnter",
-        config = function()
-            require('dashboard').setup{
-                theme = 'doom',
-                shortcut_type = "number",
-            }
-        end
+  "nvimdev/dashboard-nvim",
+  event = "VimEnter", -- load on startup
+  config = function()
+    require("dashboard").setup({
+      theme = "doom",
+      config = {
+        week_header = {
+          enable = true,
+        },
+        center = {
+          { action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" },
+          { action = "e", desc = " New file", icon = " ", key = "n" },
+          { action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },
+          { action = "Telescope live_grep", desc = " Find text", icon = " ", key = "g" },
+        },
+      },
+    })
+  end,
 }
+

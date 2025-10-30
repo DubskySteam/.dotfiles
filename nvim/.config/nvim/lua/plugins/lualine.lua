@@ -1,59 +1,62 @@
-return
-{
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function ()
-        require('lualine').setup {
-            options = {
-                icons_enabled = true,
-                theme = 'auto',
-                component_separators = { left = '', right = ''},
-                section_separators = { left = '', right = ''},
-                disabled_filetypes = {
-                    statusline = {},
-                    winbar = {},
-                },
-                ignore_focus = {},
-                always_divide_middle = true,
-                always_show_tabline = true,
-                globalstatus = false,
-                refresh = {
-                    statusline = 100,
-                    tabline = 100,
-                    winbar = 100,
-                }
-            },
-            sections = {
-                lualine_a = {'mode'},
-                lualine_b = {'branch', 'diff', 'diagnostics'},
-                lualine_c = {'filename'},
-                lualine_x = {'encoding', 'fileformat', 'filetype'},
-                lualine_y = {
-                    {
-                        'lsp_status',
-                        icon = '', -- f013
-                        symbols = {
-                            spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
-                            done = '✓',
-                            separator = ' ',
-                        },
-                        ignore_lsp = {},
-                    }
-                },
-                lualine_z = {'location'},
-            },
-            inactive_sections = {
-                lualine_a = {},
-                lualine_b = {},
-                lualine_c = {'filename'},
-                lualine_x = {'location'},
-                lualine_y = {},
-                lualine_z = {}
-            },
-            winbar = {},
-            tabline = {},
-            inactive_winbar = {},
-            extensions = {}
-        }
+return {
+  "nvim-lualine/lualine.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  config = function()
+    local function get_lsp_servers()
+      local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+      if #clients == 0 then
+        return "No LSP"
+      end
+      local client_names = {}
+      for _, client in ipairs(clients) do
+        table.insert(client_names, client.name)
+      end
+      return "LSP: " .. table.concat(client_names, ", ")
     end
+
+    -- Example for showing language version (add more as needed)
+    local function get_language_version()
+        -- Example for Lua
+        if vim.bo.filetype == 'lua' then
+            return _VERSION -- Returns 'Lua 5.1' for example
+        end
+        -- Add other languages here, e.g., for node:
+        -- if vim.bo.filetype == 'javascript' or vim.bo.filetype == 'typescript' then
+        --   return "Node: " .. vim.fn.system("node -v"):gsub("\n", "")
+        -- end
+        return ""
+    end
+
+    require("lualine").setup({
+      options = {
+        theme = "catppuccin",
+        component_separators = { left = "│", right = "│" },
+        section_separators = { left = "", right = "" },
+      },
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = { "branch", { "diff",
+          source = function()
+            local gitsigns = vim.b.gitsigns_status_dict
+            if gitsigns then
+              return {
+                added = gitsigns.added,
+                modified = gitsigns.changed,
+                removed = gitsigns.removed
+              }
+            end
+          end
+        }},
+        lualine_c = {},
+        lualine_x = { get_lsp_servers, "filetype", get_language_version },
+        lualine_y = {},
+        lualine_z = { "location" },
+      },
+      inactive_sections = {
+        lualine_c = { "filename" },
+        lualine_x = { "location" },
+      },
+    })
+  end,
 }
+
