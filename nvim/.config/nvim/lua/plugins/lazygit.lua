@@ -2,11 +2,9 @@
 
 return {
   "kdheepak/lazygit.nvim",
+  cmd = "LazyGit",
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
-  config = function()
-    -- No setup needed, but you can add custom settings here if you want
-  end,
 }
 

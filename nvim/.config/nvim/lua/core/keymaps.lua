@@ -6,14 +6,8 @@ local keymap = vim.keymap -- for conciseness
 -- General Keymaps
 keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit window" })
 keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save buffer" })
-
--- Add this to your keymaps.lua
 keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Open LazyGit" })
--- Add this to lua/user/core/keymaps.lua
 keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
--- from lua/user/core/keymaps.lua
-keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })
-keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right split" })
 
 -- Clear search highlighting
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })

@@ -43,18 +43,21 @@ return {
         { name = "buffer" },
         { name = "path" },
       }),
+      experimental = {
+        ghost_text = true,
+      },
     })
 
     -- Keymaps for LSP
     local on_attach = function(_, bufnr)
       local keymap = vim.keymap
       local opts = { buffer = bufnr, silent = true }
-      keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-      keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-      keymap.set("n", "K", vim.lsp.buf.hover, opts)
-      keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-      keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-      keymap.set("n", "gr", vim.lsp.buf.references, opts)
+      keymap.set("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
+      keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Go to definition" }))
+      keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
+      keymap.set("n", "<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
+      keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code action" }))
+      keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "Find references" }))
     end
 
     -- Setup language servers.

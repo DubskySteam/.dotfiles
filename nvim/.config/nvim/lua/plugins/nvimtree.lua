@@ -3,6 +3,7 @@
 return {
   "nvim-tree/nvim-tree.lua",
   dependencies = { "nvim-tree/nvim-web-devicons" }, -- for file icons
+  cmd = { "NvimTreeToggle", "NvimTreeFocus" },
   config = function()
     require("nvim-tree").setup({
       update_focused_file = {

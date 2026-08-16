@@ -11,15 +11,20 @@ opt.tabstop = 2      -- 2 spaces for tabs (prettier default)
 opt.shiftwidth = 2   -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
+opt.smartindent = true -- smart indent
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true  -- if you include mixed case in your search, assumes you want case-sensitive
+opt.hlsearch = true   -- highlight search results
+opt.incsearch = true  -- search as you type
 
 -- appearance
 opt.termguicolors = true -- enable 24-bit RGB colors
 opt.cursorline = true    -- highlight the current line
 opt.signcolumn = "yes"   -- always show the sign column, otherwise it would shift the text
+opt.wrap = false         -- don't wrap long lines
+opt.laststatus = 3       -- global statusline (for lualine)
 
 -- behavior
 opt.splitright = true    -- split vertical window to the right
@@ -31,4 +36,9 @@ opt.swapfile = false     -- don't use swapfile
 opt.backup = false       -- don't create backup file
 opt.showmode = false     -- we have a statusline, so we don't need this
 opt.scrolloff = 8        -- minimal number of screen lines to keep above and below the cursor
+opt.hidden = true        -- allow switching buffers without saving
+opt.updatetime = 250     -- faster update for things like gitsigns and LSP
+opt.timeoutlen = 300     -- faster key sequence timeout
+opt.completeopt = { "menu", "menuone", "noselect" } -- better completion behavior
+opt.pumheight = 10       -- limit completion popup height
 
