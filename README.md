@@ -1,122 +1,44 @@
-# .dotfiles
+# ⚡ Dotfiles
 
-## Installation
 
-### Install scripts
+## ⚙️ Installation & Setup
 
-- **Arch**
-   ```sh
-   sudo chmod +x ./install.sh
-   sudo ./install.sh
-   ```
+Clone the repository and run the automated setup script to install dependencies and establish symlinks instantly.
 
-- **Windows**
-   
-   1. **Install PowerShell 7 if required**
-      ```ps1
-      winget install --id Microsoft.Powershell --source winget
-      ```
+### 1. Clone Repository
 
-   2. **Install necessary programs**
-      ```ps1
-      .\win_install_req.ps1
-      ```
+```bash
+git clone https://github.com/dubskysteam/.dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
 
-   3. **Create symlinks** 
-      ```ps1
-      .\win_install.ps1
-      ```
-
-### Manual
-
-**Requirements:**
-- git
-- stow (linux only)
-- powershell 7 (windows only)
-
-1. **Clone the Repository**
-   ```sh
-   cd $HOME
-   git clone https://github.com/dubskysteam/.dotfiles
-   cd .dotfiles
-   ```
-
-2. **Create symlinks**
-
-   **Linux / Arch**
-   ```sh
-   stow X  # Replace X with the folder name you want to symlink
-   ```
-
-   **Windows**
-   ```sh
-   New-Item -Path PATH_FROM_DOTFILES -ItemType SymbolicLink -Value PATH_TO_TARGET_DIR
-   ```
-
-## Included
-##### Tested Distros
-```
-Arch (Tested: 11.05.2025)
-Windows 11 (Tested: 11.05.2025)
 ```
 
-##### Desktop Enviroment
-Linux
-```sh
-[Desktop] i3
-[Top Bar] waybar
+### 2. Run Auto-Install Script
+
+```bash
+chmod +x setup.sh
+./setup.sh
+
 ```
 
-Windows
-```sh
-[Desktop] Komorebi
-[Top Bar] Yasb
+### 3. Manual Stow (Alternative)
+
+If you prefer linking packages manually:
+
+```bash
+cd ~/.dotfiles
+stow zsh hypr waybar wofi tmux kitty
+
 ```
 
-##### Programming Languages
-```
-Zig
-Rust
-C/C++
-NodeJS
-Python 3
-Java 11 | 17 | 21
-```
+---
 
-##### Terminal
-Emulators
-```sh
-Wezterm
-```
+## ⌨️ Custom Keybindings
 
-Shells
-```sh
-[Linux] Bash
-[Win 11] PowerShell 7
-```
+Here are some of the core bindings configured in `hyprland.conf`:
 
-Multiplexer
-```sh
-[Linux] Tmux
-[Win 11] Wezterm internal
-```
-
-##### Development
-```sh
-Git
-Gpg
-LazyGit
-GitHub CLI
-```
-
-##### Editors
-```sh
-NeoVim
-VS Code
-```
-
-##### Quality of Life
-```sh
-stow # A symlink tool
-screenfetch # Neofetch alternative
-```
+* **`SUPER + D`** — Open Wofi (App Launcher)
+* **`SUPER + Enter`** — Open Terminal
+* **`SUPER + Q`** — Close active window
+* **`SUPER + Shift + E`** — Exit/Restart Hyprland session
+* **`SUPER + [1-9]`** — Switch workspace
