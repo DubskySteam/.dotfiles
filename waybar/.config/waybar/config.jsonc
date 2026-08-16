@@ -1,29 +1,75 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 30,
-  "spacing": 4,
+  "height": 36,
+  "spacing": 6,
+  "margin-top": 10,
+  "margin-left": 12,
+  "margin-right": 12,
+
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "network", "battery", "tray"],
-  
+  "modules-right": ["pulseaudio", "network", "battery", "cpu", "memory", "tray"],
+
   "hyprland/workspaces": {
     "format": "{icon}",
-    "on-click": "activate"
+    "on-click": "activate",
+    "sort-by-number": true,
+    "active-only": false
   },
+
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 40
+  },
+
   "clock": {
-    "format": "{:%H:%M - %d.%m.%Y}"
+    "format": "󰥔 {:%H:%M}",
+    "format-alt": "{:%a %d %b %Y}",
+    "tooltip-format": "{:%A, %d %B %Y  -  %H:%M}",
+    "on-click": "toggle"
   },
-  "battery": {
-    "format": "{capacity}% {icon}",
-    "format-icons": ["", "", "", "", ""]
-  },
-  "network": {
-    "format-wifi": "{essid} ",
-    "format-disconnected": "Disconnected ⚠"
-  },
+
   "pulseaudio": {
-    "format": "{volume}% {icon}",
-    "format-icons": ["", "", ""]
+    "format": "{volume}%  {icon}",
+    "format-muted": "󰝟  {volume}%",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+  },
+
+  "network": {
+    "format-wifi": "󰖩  {essid}",
+    "format-ethernet": "󰈀  {ifname}",
+    "format-disconnected": "󰤮  Disconnected",
+    "tooltip-format": "{ifname}: {ipaddr}"
+  },
+
+  "battery": {
+    "format": "{capacity}%  {icon}",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "tooltip-format": "{timeTo}  ({power})"
+  },
+
+  "cpu": {
+    "format": "󰻠  {usage}%",
+    "interval": 5
+  },
+
+  "memory": {
+    "format": "󰍛  {percentage}%",
+    "interval": 5
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 6
   }
 }
