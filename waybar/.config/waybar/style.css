@@ -9,7 +9,7 @@
 @define-color black     #1a1b26;
 
 * {
-    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-family: "JetBrainsMono NF", monospace;
     font-size: 13px;
     min-height: 0;
     border: none;
