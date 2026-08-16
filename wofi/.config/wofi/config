@@ -1,0 +1,7 @@
+allow_images=true
+show=drun
+prompt=Search...
+width=500
+height=300
+always_parse_args=true
+insensitive=true
