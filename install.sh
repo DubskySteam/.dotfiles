@@ -8,7 +8,7 @@ C_GREEN='\033[0;32m'
 echo 'GitHub::Repo = https://github.com/DubskySteam/.dotfiles'
 
 printf "> ${C_CYAN}Updating:${C_CLEAR} Keyring\n"
-sudo pacman -Sy --noconfirm archlinux-keyring
+sudo pacman -Sy --noconfirm archlinux-keyring reflector
 
 printf "> ${C_CYAN}Updating:${C_CLEAR} Mirrors\n"
 sudo reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
@@ -25,17 +25,19 @@ select yn in "Yes" "No"; do
 done
 
 printf "> ${C_CYAN}Installing:${C_CLEAR} Essentials\n"
-sudo pacman -S --noconfirm stow tmux neofetch wget gpgme eza base-devel cmake make wofi ninja gradle
+sudo pacman -Sy --noconfirm stow git tmux wget gpgme eza base-devel cmake make wofi ninja gradle github-cli
+sudo pacman -Sy --noconfirm zsh zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search zoxide direnv
+
+printf "> ${C_CYAN}Installing:${C_CLEAR} Paru\n"
+sudo pacman -S --needed base-devel
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+cd ..
 
 printf "> ${C_CYAN}Installing:${C_CLEAR} QoL Tools\n"
-sudo pacman -S --noconfirm mpv nomacs btop
+sudo pacman -Sy --noconfirm mpv 
+paru -S --noconfirm brave-bin hyprpolkitagent hyprshutdown hyprpaper waybar ttf-jetbrain-mono-nerd yazi
 
 printf "> ${C_CYAN}Installing:${C_CLEAR} Languages & Environments\n"
-sudo pacman -S --noconfirm git neovim python gcc jdk17-openjdk
-
-printf "> ${C_CYAN}Creating symlinks${C_CLEAR}\n"
-stow nvim
-stow tmux
-stow bash
-stow waybar
-stow hypr
+sudo pacman -S --noconfirm neovim python gcc
