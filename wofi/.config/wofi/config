@@ -1,7 +1,9 @@
 allow_images=true
 show=drun
 prompt=Search...
-width=500
-height=300
+width=560
+height=340
+layer=overlay
+matching=fuzzy
 always_parse_args=true
 insensitive=true

@@ -1,0 +1,61 @@
+/* ── Tokyo Night (dark) · wofi drun launcher ─────────────────────────── */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+window {
+    background-color: #1a1b26;
+    border-radius: 10px;
+    border: 1px solid #2f3549;
+    color: #c0caf5;
+}
+
+#outer-box {
+    background: transparent;
+    border-radius: 10px;
+    padding: 6px;
+}
+
+#input {
+    background-color: #24283b;
+    color: #c0caf5;
+    caret-color: #7aa2f7;
+    border-radius: 8px;
+    border: 1px solid #2f3549;
+    padding: 10px 14px;
+    margin: 8px;
+    font-size: 14px;
+}
+
+#input:focus {
+    border: 1px solid #7aa2f7;
+}
+
+#inner-box {
+    background: transparent;
+    margin: 0 8px 8px 8px;
+}
+
+#scroll {
+    background: transparent;
+}
+
+#entry {
+    background: transparent;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 2px 0;
+    color: #c0caf5;
+}
+
+#entry:selected {
+    background-color: #2f3549;
+    color: #7aa2f7;
+}
+
+#entry image {
+    margin-right: 10px;
+}

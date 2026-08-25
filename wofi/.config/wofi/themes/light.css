@@ -1,0 +1,61 @@
+/* ── Tokyo Night Day (light) · wofi ───────────────────────────────────── */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+window {
+    background-color: #e1e2e7;
+    border-radius: 10px;
+    border: 1px solid #b4b9d2;
+    color: #3760bf;
+}
+
+#outer-box {
+    background: transparent;
+    border-radius: 10px;
+    padding: 6px;
+}
+
+#input {
+    background-color: #cfcfdb;
+    color: #3760bf;
+    caret-color: #2e7de9;
+    border-radius: 8px;
+    border: 1px solid #b4b9d2;
+    padding: 10px 14px;
+    margin: 8px;
+    font-size: 14px;
+}
+
+#input:focus {
+    border: 1px solid #2e7de9;
+}
+
+#inner-box {
+    background: transparent;
+    margin: 0 8px 8px 8px;
+}
+
+#scroll {
+    background: transparent;
+}
+
+#entry {
+    background: transparent;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 2px 0;
+    color: #3760bf;
+}
+
+#entry:selected {
+    background-color: #bfc4d6;
+    color: #2e7de9;
+}
+
+#entry image {
+    margin-right: 10px;
+}
