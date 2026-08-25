@@ -1,0 +1,22 @@
+/* Tokyo Night Day (light) — solid */
+
+@define-color bg      #e1e2e7;
+@define-color surface #cfcfdb;
+@define-color hover   #bfc4d6;
+@define-color border  #b4b9d2;
+
+@define-color fg      #3760bf;
+@define-color fg-dim  #8b93c4;
+
+@define-color accent  #2e7de9;
+@define-color purple  #9854f1;
+@define-color teal    #118c74;
+@define-color green   #387068;
+@define-color yellow  #8c6c3e;
+@define-color orange  #b15c00;
+@define-color red     #f52a65;
+
+/* active window spotlight: reversed — dark gradient on light bar */
+@define-color win-grad-a #3760bf;
+@define-color win-grad-b #9854f1;
+@define-color win-text   #e1e2e7;

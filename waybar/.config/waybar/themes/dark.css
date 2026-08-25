@@ -1,0 +1,22 @@
+/* Tokyo Night (dark) — solid */
+
+@define-color bg      #1a1b26;
+@define-color surface #24283b;
+@define-color hover   #2f3549;
+@define-color border  #2f3549;
+
+@define-color fg      #c0caf5;
+@define-color fg-dim  #565f89;
+
+@define-color accent  #7aa2f7;
+@define-color purple  #bb9af7;
+@define-color teal    #73daca;
+@define-color green   #9ece6a;
+@define-color yellow  #e0af68;
+@define-color orange  #ff9e64;
+@define-color red     #f7768e;
+
+/* active window spotlight: light gradient on dark bar */
+@define-color win-grad-a #c0caf5;
+@define-color win-grad-b #7aa2f7;
+@define-color win-text   #1a1b26;

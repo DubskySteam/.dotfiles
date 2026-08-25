@@ -1,16 +1,13 @@
-@define-color bar-bg    rgba(26, 27, 38, 0.82);
-@define-color module-bg rgba(41, 46, 66, 0.70);
-@define-color fg        #c0caf5;
-@define-color fg-dim    #565f89;
-@define-color accent    #7aa2f7;
-@define-color green     #9ece6a;
-@define-color yellow    #e0af68;
-@define-color red       #f7768e;
-@define-color black     #1a1b26;
+@import url("theme.css");
+
+/* ── Tokyo Night · flat solid waybar ─────────────────────────────────
+   Palette lives in theme.css (generated from themes/dark.css or
+   themes/light.css — toggle with scripts/toggle-theme.sh).           */
 
 * {
-    font-family: "JetBrainsMono NF", monospace;
+    font-family: "JetBrainsMono Nerd Font", monospace;
     font-size: 13px;
+    font-weight: 700;
     min-height: 0;
     border: none;
     border-radius: 0;
@@ -18,89 +15,168 @@
     text-shadow: none;
 }
 
+/* ── Bar shell ─────────────────────────────────────────────────────── */
+
 window#waybar {
-    background: @bar-bg;
+    background: @bg;
     color: @fg;
-    border-radius: 18px;
-    border: 1px solid rgba(122, 162, 247, 0.30);
+    border-radius: 10px;
+    border: 1px solid @border;
 }
 
-window#waybar.hidden { opacity: 0.2; }
+window#waybar.hidden { opacity: 0.0; }
+
+/* ── Tooltip / calendar dropdown ───────────────────────────────────── */
 
 tooltip {
-    background: rgba(26, 27, 38, 0.96);
-    border: 1px solid rgba(122, 162, 247, 0.30);
-    border-radius: 12px;
+    background: @bg;
+    border: 1px solid @border;
+    border-radius: 10px;
+}
+tooltip label {
     color: @fg;
+    font-weight: 700;
+    padding: 8px 10px;
 }
-tooltip label { color: @fg; }
+tooltip * {
+    background: transparent;
+}
 
-#workspaces {
-    margin: 4px 2px;
-    padding: 0 4px;
-    background: @module-bg;
-    border-radius: 12px;
+/* ── Modules — flat, no boxes ──────────────────────────────────────── */
+
+#workspaces,
+#window,
+#clock,
+#custom-media,
+#custom-settings,
+#custom-theme,
+#temperature,
+#cpu,
+#memory,
+#backlight,
+#pulseaudio,
+#network,
+#battery,
+#tray {
+    margin: 0 2px;
+    padding: 0 7px;
+    background: transparent;
+    font-weight: 700;
+    transition: all 0.25s ease;
 }
+
+/* interactive modules brighten on hover */
+#pulseaudio:hover,
+#network:hover,
+#custom-settings:hover,
+#custom-theme:hover,
+#backlight:hover {
+    color: @accent;
+}
+
+/* ── Workspaces ────────────────────────────────────────────────────── */
+
 #workspaces button {
-    margin: 2px;
+    margin: 0 1px;
     padding: 0 8px;
+    min-width: 16px;
     background: transparent;
     color: @fg-dim;
-    border-radius: 9px;
-    transition: all 0.2s ease;
+    font-weight: 700;
+    border-radius: 17px;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 #workspaces button:hover {
-    background: rgba(122, 162, 247, 0.25);
+    background: alpha(@fg, 0.10);
     color: @fg;
 }
 #workspaces button.active {
     background: @accent;
-    color: @black;
+    color: @bg;
+    font-weight: 700;
 }
 #workspaces button.urgent {
     background: @red;
-    color: @black;
+    color: @bg;
+    animation: pulse-fade 1s ease infinite alternate;
 }
+
+/* ── Window title — gradient spotlight (theme-reversed) ────────────── */
 
 #window {
-    margin: 4px 2px;
-    padding: 0 12px;
-    background: @module-bg;
-    border-radius: 12px;
+    color: @win-text;
+    padding: 0 14px;
+    background-image: linear-gradient(135deg, @win-grad-a, @win-grad-b);
+    border-radius: 17px;
+}
+#window.empty {
+    background-image: none;
+    color: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Clock ─────────────────────────────────────────────────────────── */
+
+#clock {
     color: @fg;
+    font-weight: 700;
+    min-width: 92px;
 }
 
-#clock,
-#battery,
-#network,
-#pulseaudio,
-#cpu,
-#memory,
-#tray {
-    margin: 4px 2px;
-    padding: 0 12px;
-    background: @module-bg;
-    border-radius: 12px;
+/* ── Media ─────────────────────────────────────────────────────────── */
+
+#custom-media { color: @purple; }
+#custom-media.paused {
+    color: @fg-dim;
+    font-style: italic;
 }
 
-#clock { color: @accent; }
+/* ── Theme toggle ──────────────────────────────────────────────────── */
 
-#battery.warning { color: @yellow; }
-#battery.critical { color: @red; }
+#custom-theme.dark  { color: @orange; }   /* sun — click for light */
+#custom-theme.light { color: @accent; }   /* moon — click for dark */
 
+/* ── System stats ──────────────────────────────────────────────────── */
+
+#cpu         { color: @teal; }
+#memory      { color: @green; }
+#temperature { color: @yellow; }
+#temperature.critical {
+    color: @red;
+    animation: pulse-fade 0.8s ease infinite alternate;
+}
+
+/* ── Backlight / audio / network ───────────────────────────────────── */
+
+#backlight  { color: @orange; }
+#pulseaudio { color: @fg; }
+
+#network { color: @accent; }
 #network.disconnected { color: @red; }
 
-#pulseaudio.muted { color: @red; }
+/* ── Battery ───────────────────────────────────────────────────────── */
 
-#cpu,
-#memory { color: @green; }
-
-#tray {
-    padding: 0 8px;
+#battery { color: @green; }
+#battery.charging, #battery.plugged { color: @teal; }
+#battery.warning:not(.charging) { color: @yellow; }
+#battery.critical:not(.charging) {
+    color: @red;
+    animation: pulse-fade 0.7s ease infinite alternate;
 }
-#tray > .passive { color: @fg; }
+
+/* ── Tray ──────────────────────────────────────────────────────────── */
+
+#tray > .passive { -gtk-icon-effect: dim; }
 #tray > .needs-attention {
+    -gtk-icon-effect: highlight;
     background: @red;
-    color: @black;
-    border-radius: 9px;
+    border-radius: 6px;
+}
+
+/* ── Animations ────────────────────────────────────────────────────── */
+
+@keyframes pulse-fade {
+    from { opacity: 1.0; }
+    to   { opacity: 0.45; }
 }
