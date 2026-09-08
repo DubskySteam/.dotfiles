@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Hyprland (Quickshell)
+Comment=Hyprland with the Quickshell shell
+Exec=/usr/local/bin/dotfiles-hyprland quickshell
+TryExec=/usr/local/bin/dotfiles-hyprland
+Type=Application

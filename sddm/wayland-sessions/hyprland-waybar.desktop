@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Hyprland (Waybar)
+Comment=Hyprland with the established Waybar shell
+Exec=/usr/local/bin/dotfiles-hyprland waybar
+TryExec=/usr/local/bin/dotfiles-hyprland
+Type=Application

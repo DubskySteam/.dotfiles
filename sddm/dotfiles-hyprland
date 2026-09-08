@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+profile=${1:-waybar}
+profile_command="$HOME/.local/bin/dotfiles-profile"
+
+if [[ ! -x "$profile_command" ]]; then
+  profile_command="$HOME/.dotfiles/bin/dotfiles-profile"
+fi
+
+"$profile_command" set "$profile" --no-restart
+exec uwsm start -e -D Hyprland hyprland.desktop
