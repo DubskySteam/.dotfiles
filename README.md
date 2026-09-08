@@ -15,6 +15,8 @@ Current iteration: v4
 | `waybar`  | Status bar                               |
 | `wofi`    | App launcher                             |
 | `zsh`     | Shell config, aliases & plugins          |
+| `systemd` | User service for the active shell       |
+| `sddm`    | Custom Tokyo Night login screen          |
 
 ## ⚙️ Installation
 
@@ -25,10 +27,32 @@ git clone https://github.com/dubskysteam/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ```
 
-### 2. Install Packages
+### 2. One-command setup
 
-Runs a full Arch Linux setup: keyring, mirrors, system update, essential
-packages, the AUR helper `paru`, and the app stack (fonts, tools, etc.).
+On a fresh Arch installation, the interactive bootstrap installs packages,
+links the dotfiles, configures the selected shell profile, and optionally
+installs the custom SDDM login screen.
+
+```bash
+./bootstrap.sh
+```
+
+The bootstrap asks before privileged changes and supports:
+
+```bash
+./bootstrap.sh --profile quickshell
+./bootstrap.sh --profile waybar --skip-update --no-sddm
+```
+
+### 3. Maintenance Commands
+
+The bootstrap calls these lower-level scripts automatically. Run them directly
+when only one part of the setup needs to be repeated.
+
+#### Install Packages
+
+Installs or updates the Arch packages used by the dotfiles, including both
+shell profile backends.
 
 ```bash
 ./install.sh
@@ -39,9 +63,10 @@ Options:
 * `--skip-update` — skip the keyring/mirror/system update phase
 * `--assume-yes` — answer yes to all prompts (for automation)
 
-### 3. Link Dotfiles
+#### Link Dotfiles
 
-Stows the config packages into `~` and offers to set `zsh` as your login shell.
+Restows the config packages into `~`, initializes the profile launcher, and
+offers to set `zsh` as your login shell.
 
 ```bash
 ./setup.sh
@@ -59,7 +84,18 @@ If you prefer linking packages manually:
 
 ```bash
 cd ~/.dotfiles
-stow git hyprland kitty nvim tmux waybar wofi zsh
+stow git hyprland kitty nvim systemd tmux waybar wofi zsh
+```
+
+The setup script also installs the profile launcher at
+`~/.local/bin/dotfiles-profile` and manages the user service that starts the
+selected shell. It fixes the active profile at once, so it is also the profile
+used after the next reboot.
+
+```bash
+dotfiles-profile current
+dotfiles-profile set quickshell
+dotfiles-profile menu
 ```
 
 ---
@@ -87,6 +123,17 @@ Configured in `hyprland/.config/hypr/hyprland.lua` (mod key = `SUPER`):
 
 | Script      | Purpose                                        |
 |-------------|------------------------------------------------|
-| `install.sh`| Install packages & system prerequisites       |
-| `setup.sh`  | Stow dotfiles & set default shell             |
-| `lib.sh`    | Shared helpers (sourced, not run directly)    |
+| `bootstrap.sh` | Interactive fresh-Arch setup coordinator |
+| `install.sh`   | Install packages and system prerequisites |
+| `setup.sh`     | Stow dotfiles and set the default shell   |
+| `lib.sh`       | Shared helpers (sourced, not run directly) |
+
+## Shell Profiles
+
+`waybar` is the established profile. `quickshell` is an event-driven QtQuick
+bar with reactive Hyprland workspaces, clock, title, memory/load widgets, and a
+profile menu. Only the selected backend runs; the profile is persisted outside
+Git so changing it does not switch branches or rewrite the repository.
+
+The SDDM login screen exposes both profiles. Selecting one chooses the matching
+Hyprland session and persists that choice before the desktop starts.
