@@ -1,0 +1,217 @@
+#!/usr/bin/env bash
+#
+# dotfiles-profile - Select and run the active desktop shell profile.
+#
+# The selected profile is persisted immediately so the same shell is used on
+# the next login. A system-readable state file is used when setup created it;
+# this lets the SDDM theme show the same selection before authentication.
+
+set -euo pipefail
+
+SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
+DOTFILES_DIR="$(cd "$(dirname "$SCRIPT_PATH")/.." && pwd)"
+
+SYSTEM_STATE_DIR="/var/lib/dotfiles"
+USER_STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles"
+SERVICE_NAME="dotfiles-shell.service"
+DEFAULT_PROFILE="waybar"
+
+profile_exists() {
+  case "$1" in
+    waybar) [[ -f "$DOTFILES_DIR/waybar/.config/waybar/config.jsonc" ]] ;;
+    quickshell) [[ -f "$DOTFILES_DIR/profiles/quickshell/shell.qml" ]] ;;
+    *) return 1 ;;
+  esac
+}
+
+profile_label() {
+  case "$1" in
+    waybar) printf 'Waybar' ;;
+    quickshell) printf 'Quickshell' ;;
+    *) printf '%s' "$1" ;;
+  esac
+}
+
+state_file() {
+  if [[ -d "$SYSTEM_STATE_DIR" && -w "$SYSTEM_STATE_DIR" ]]; then
+    printf '%s/profile' "$SYSTEM_STATE_DIR"
+  else
+    printf '%s/profile' "$USER_STATE_DIR"
+  fi
+}
+
+xml_state_file() {
+  if [[ -d "$SYSTEM_STATE_DIR" && -w "$SYSTEM_STATE_DIR" ]]; then
+    printf '%s/profile.xml' "$SYSTEM_STATE_DIR"
+  else
+    printf '%s/profile.xml' "$USER_STATE_DIR"
+  fi
+}
+
+read_profile() {
+  local selected=""
+  local file
+  file=$(state_file)
+  if [[ -r "$file" ]]; then
+    selected=$(<"$file")
+  fi
+  if profile_exists "$selected"; then
+    printf '%s' "$selected"
+  else
+    printf '%s' "$DEFAULT_PROFILE"
+  fi
+}
+
+write_profile() {
+  local selected=$1
+  local file dir tmp
+
+  file=$(state_file)
+  dir=$(dirname "$file")
+  mkdir -p "$dir"
+  chmod 755 "$dir" 2>/dev/null || true
+
+  tmp=$(mktemp "${file}.tmp.XXXXXX")
+  printf '%s\n' "$selected" > "$tmp"
+  chmod 644 "$tmp"
+  mv -f "$tmp" "$file"
+
+  # SDDM reads this small XML mirror without needing access to the user's home.
+  file=$(xml_state_file)
+  tmp=$(mktemp "${file}.tmp.XXXXXX")
+  printf '<profile name="%s" />\n' "$selected" > "$tmp"
+  chmod 644 "$tmp"
+  mv -f "$tmp" "$file"
+}
+
+signal_waybar() {
+  pkill -RTMIN+9 -x waybar 2>/dev/null || true
+}
+
+restart_service() {
+  if ! command -v systemctl >/dev/null 2>&1 || ! systemctl --user cat "$SERVICE_NAME" >/dev/null 2>&1; then
+    return 1
+  fi
+
+  systemctl --user restart "$SERVICE_NAME"
+}
+
+fallback_restart() {
+  pkill -TERM -x waybar 2>/dev/null || true
+  pkill -TERM -f "quickshell.*${DOTFILES_DIR}/profiles/quickshell" 2>/dev/null || true
+  nohup "$0" run >/dev/null 2>&1 &
+}
+
+set_profile() {
+  local selected=${1:-}
+  local no_restart=0
+
+  if [[ ${2:-} == "--no-restart" ]]; then
+    no_restart=1
+  fi
+
+  if ! profile_exists "$selected"; then
+    printf 'Unknown or unavailable profile: %s\n' "$selected" >&2
+    printf 'Available profiles: waybar, quickshell\n' >&2
+    return 1
+  fi
+
+  if [[ "$selected" == quickshell ]] && ! command -v quickshell >/dev/null 2>&1; then
+    printf 'Quickshell is not installed. Install it with: sudo pacman -S quickshell\n' >&2
+    return 1
+  fi
+
+  write_profile "$selected"
+  signal_waybar
+
+  if (( no_restart == 0 )) && [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]; then
+    if ! restart_service; then
+      fallback_restart
+    fi
+  fi
+
+  printf '%s\n' "$selected"
+}
+
+run_profile() {
+  local selected
+  selected=$(read_profile)
+
+  case "$selected" in
+    waybar)
+      exec waybar
+      ;;
+    quickshell)
+      command -v quickshell >/dev/null 2>&1 || {
+        printf 'Quickshell is not installed; refusing to start the quickshell profile.\n' >&2
+        exit 1
+      }
+      exec quickshell --path "$DOTFILES_DIR/profiles/quickshell"
+      ;;
+  esac
+}
+
+show_menu() {
+  local current selected theme
+  current=$(read_profile)
+  theme=$(<"$HOME/.cache/waybar-theme" 2>/dev/null || printf 'dark')
+
+  if ! command -v wofi >/dev/null 2>&1; then
+    printf 'Wofi is required for the graphical profile menu.\n' >&2
+    return 1
+  fi
+
+  selected=$(printf 'Waybar%s\nQuickshell%s\n' \
+    "$([[ $current == waybar ]] && printf '  [active]')" \
+    "$([[ $current == quickshell ]] && printf '  [active]')" \
+    | wofi --dmenu --prompt 'shell profile' --width 420 --height 150 \
+      --hide-scroll --insensitive \
+      --style "$HOME/.config/wofi/themes/${theme}.css") || return 0
+
+  case "$selected" in
+    Waybar*) set_profile waybar ;;
+    Quickshell*) set_profile quickshell ;;
+  esac
+}
+
+show_status() {
+  local current label escaped
+  current=$(read_profile)
+  label=$(profile_label "$current")
+  escaped=${label//\\/\\\\}
+  escaped=${escaped//\"/\\\"}
+  printf '{"text":"%s","class":"%s","tooltip":"Active shell: %s"}\n' \
+    "$label" "$current" "$escaped"
+}
+
+usage() {
+  cat <<'EOF'
+Usage: dotfiles-profile <command> [profile] [--no-restart]
+
+Commands:
+  current                 Print the active profile.
+  status                  Print Waybar-compatible JSON status.
+  set <profile>           Persist and activate a profile.
+  menu                    Open the Wofi profile selector.
+  run                     Run the selected backend (used by systemd).
+  init                    Create a default profile if none exists.
+
+Profiles:
+  waybar                  The established Waybar configuration.
+  quickshell              The event-driven Quickshell configuration.
+EOF
+}
+
+command_name=${1:-current}
+case "$command_name" in
+  current) read_profile; printf '\n' ;;
+  status) show_status ;;
+  set) set_profile "${2:-}" "${3:-}" ;;
+  menu) show_menu ;;
+  run) run_profile ;;
+  init)
+    [[ -e "$(state_file)" ]] || write_profile "$DEFAULT_PROFILE"
+    ;;
+  -h|--help|help) usage ;;
+  *) usage >&2; exit 2 ;;
+esac

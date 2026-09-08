@@ -18,6 +18,7 @@
     "pulseaudio",
     "network",
     "battery",
+    "custom/profile",
     "custom/settings",
     "custom/theme",
     "tray"
@@ -76,6 +77,15 @@
     "format": "󰒓",
     "tooltip": false,
     "on-click": "sh -c '$HOME/.config/waybar/scripts/settings-menu.sh'"
+  },
+
+  "custom/profile": {
+    "exec": "$HOME/.local/bin/dotfiles-profile status",
+    "return-type": "json",
+    "interval": 0,
+    "signal": 9,
+    "on-click": "$HOME/.local/bin/dotfiles-profile menu",
+    "tooltip": true
   },
 
   "custom/theme": {

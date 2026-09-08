@@ -50,7 +50,8 @@ local menu        = "wofi --show drun --style $HOME/.config/wofi/themes/$(cat $H
 --
 hl.on("hyprland.start", function () 
    hl.exec_cmd("nm-applet")
-   hl.exec_cmd("waybar & hyprpaper")
+   hl.exec_cmd("hyprpaper &")
+   hl.exec_cmd("systemctl --user start --no-block dotfiles-shell.service")
  end)
 
 
@@ -266,7 +267,7 @@ hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("command -v hyprctl hyprpaper reload"))
-hl.bind(mainMod .. " + F5", hl.dsp.exec_cmd("killall waybar; sleep 0.2; waybar &"))
+hl.bind(mainMod .. " + F5", hl.dsp.exec_cmd("systemctl --user restart dotfiles-shell.service"))
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd("$HOME/.config/waybar/scripts/toggle-theme.sh"))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))

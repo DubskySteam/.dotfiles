@@ -50,6 +50,7 @@ tooltip * {
 #custom-media,
 #custom-settings,
 #custom-theme,
+#custom-profile,
 #temperature,
 #cpu,
 #memory,
@@ -70,6 +71,7 @@ tooltip * {
 #network:hover,
 #custom-settings:hover,
 #custom-theme:hover,
+#custom-profile:hover,
 #backlight:hover {
     color: @accent;
 }
@@ -136,6 +138,8 @@ tooltip * {
 
 #custom-theme.dark  { color: @orange; }   /* sun — click for light */
 #custom-theme.light { color: @accent; }   /* moon — click for dark */
+#custom-profile.waybar { color: @accent; }
+#custom-profile.quickshell { color: @purple; }
 
 /* ── System stats ──────────────────────────────────────────────────── */
 

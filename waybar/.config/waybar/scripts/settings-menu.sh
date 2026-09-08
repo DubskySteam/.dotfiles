@@ -39,6 +39,7 @@ build_menu() {
   printf ' Blur         [%s]\n' "$(opt_on decoration:blur:enabled && echo on || echo off)"
   printf ' Animations   [%s]\n' "$(opt_on animations:enabled && echo on || echo off)"
   printf ' Gaps         [%s]\n' "$(gaps_on && echo on || echo off)"
+  printf ' Shell        [%s]\n' "$("$HOME/.local/bin/dotfiles-profile" current 2>/dev/null || echo waybar)"
   printf '%s\n' "$SEP"
   printf ' Reload Hyprland\n'
   printf ' Restart Waybar\n'
@@ -73,6 +74,7 @@ case $sel in
       hyprctl keyword general:gaps_out 20 >/dev/null
     fi
     exec "$0" ;;
+  *"Shell"*) "$HOME/.local/bin/dotfiles-profile" menu; exit 0 ;;
   *"Reload Hyprland"*) hyprctl reload >/dev/null 2>&1; exit 0 ;;
   *"Restart Waybar"*)  killall waybar 2>/dev/null; sleep 0.3; nohup waybar >/dev/null 2>&1 & exit 0 ;;
   *"Edit dotfiles"*)   kitty --directory "$HOME/.dotfiles" & disown; exit 0 ;;
