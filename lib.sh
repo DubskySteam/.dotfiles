@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # lib.sh - Shared helpers for the dotfiles scripts.
-# Sourced by install.sh and setup.sh. Not meant to be run directly.
+# Sourced by bootstrap.sh, install.sh, and setup.sh. Not meant to be run directly.
 
 # ─── Colors ────────────────────────────────────────────────────────────────
 C_CLEAR='\033[0m'

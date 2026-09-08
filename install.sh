@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 #
-# install.sh - Full Arch Linux setup: keyring, mirrors, system update,
-#              essential packages, AUR helper (paru), and app stack.
+# install.sh - Install the packages used by the dotfiles.
 #
-# Usage:  ./scripts/install.sh [--skip-update] [--assume-yes]
+# Usage:  ./install.sh [--skip-update] [--assume-yes]
 #
 # Options:
 #   --skip-update  Skip the keyring/mirror/system update phase.
@@ -17,7 +16,9 @@ source "${SCRIPT_DIR}/lib.sh"
 
 ASSUME_YES=0
 SKIP_UPDATE=0
-for arg in "$@"; do
+while [[ $# -gt 0 ]]; do
+  arg=$1
+  shift
   case "$arg" in
     --skip-update) SKIP_UPDATE=1 ;;
     --assume-yes)  ASSUME_YES=1 ;;
@@ -32,7 +33,7 @@ done
 # ─── Preflight ─────────────────────────────────────────────────────────────
 banner "Arch Linux Auto-Install"
 
-require_command pacman || true
+require_command pacman
 if ! is_installed reflector; then
   log_warn "reflector not found — it will be installed during the update phase."
 fi
@@ -61,7 +62,10 @@ log_step "Installing: Essentials"
 pacman_install \
   stow git tmux wget gpgme eza base-devel cmake make wofi ninja gradle \
   github-cli zsh zsh-autosuggestions zsh-syntax-highlighting \
-  zsh-history-substring-search zoxide direnv
+  zsh-history-substring-search zoxide direnv \
+  hyprland kitty dolphin dunst playerctl networkmanager \
+  pipewire pipewire-pulse wireplumber sddm uwsm polkit-kde-agent \
+  xdg-desktop-portal-hyprland qt5-declarative qt5-xmlpatterns qt6-declarative
 
 # ─── 3. AUR helper (paru) ──────────────────────────────────────────────────
 if ! is_installed paru; then
@@ -77,8 +81,8 @@ fi
 
 # ─── 4. QoL tools ──────────────────────────────────────────────────────────
 log_step "Installing: QoL Tools"
-pacman_install mpv
-paru_install brave-bin hyprpolkitagent hyprshutdown hyprpaper waybar yazi
+pacman_install mpv pavucontrol brightnessctl network-manager-applet
+paru_install brave-bin hyprpolkitagent hyprshutdown hyprpaper hyprlock waybar yazi
 
 # ─── 5. Fonts ──────────────────────────────────────────────────────────────
 log_step "Installing: Fonts"
@@ -88,7 +92,12 @@ paru_install ttf-jetbrains-mono-nerd otf-font-awesome
 log_step "Installing: Languages & Environments"
 pacman_install neovim python gcc
 
+log_step "Installing: shell profile dependencies"
+# Both profiles are installed so the SDDM selector and runtime menu never
+# expose a backend that cannot start. Only the selected backend is run.
+pacman_install quickshell
+
 # ─── Done ──────────────────────────────────────────────────────────────────
 printf "\n"
 log_ok "Installation complete."
-log_info "Next step: run ${C_BOLD}./scripts/setup.sh${C_CLEAR} to link dotfiles."
+log_info "Next step: run ${C_BOLD}./setup.sh${C_CLEAR} to link dotfiles."
