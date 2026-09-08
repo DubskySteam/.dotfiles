@@ -1,0 +1,22 @@
+# Local package build artifacts
+/paru/
+
+# Generated configuration and systemd enablement links
+/waybar/.config/waybar/theme.css
+/profiles/quickshell/.qmlls.ini
+/systemd/.config/systemd/user/graphical-session.target.wants/
+
+# Local-only files
+.DS_Store
+*.log
+*.swp
+*.swo
+*~
+*.tmp
+*.bak
+*.orig
+
+# Local secrets
+.env
+.env.*
+!.env.example
